@@ -1,0 +1,45 @@
+kalimat,intent
+halo min,salam
+selamat pagi kak,salam
+makasih banget,terima_kasih
+dadah sampai jumpa lagi,perpisahan
+kamu bot apa sih,identitas
+gimana cara mulai git di folder baru,git_init
+download project dari github caranya,git_clone
+atur nama dan email git dong,git_config
+kondisi repo sekarang gimana,git_status
+pilih file mana yang mau di commit,git_add
+git add titik itu maksudnya apa,git_add
+simpan perubahan ke git gimana,git_commit
+salah nulis pesan commit terakhir,git_commit
+lihat beda kode sebelum commit,git_diff
+riwayat commitnya lihat dimana,git_log
+daftar branch sekarang apa aja,git_branch
+pindah ke branch fitur,git_switch
+gabungin branch ke main,git_merge
+rapihin riwayat commit biar lurus,git_rebase
+cek url remote yang kehubung,git_remote
+tarik update dari remote tanpa merge,git_fetch
+update kode lokal dari github,git_pull
+upload kode ke github,git_push
+batalkan perubahan file yang belum di commit,git_restore
+keluarkan file dari staging,git_restore
+undo commit yang belum di push,git_reset
+mbalikin commit yang udah kepublish,git_revert
+simpen dulu perubahan yang belum siap,git_stash
+ambil satu commit dari branch lain,git_cherry_pick
+hapus file yang belum di track,git_clean
+git tag itu buat apa,git_tag
+bikin file gitignore,git_ignore
+hapus file dari repositori,git_rm
+pulihkan commit yang kehapus,git_reflog
+lihat detail satu commit,git_show
+apa bedanya git fetch sama git pull,perbedaan_pull_fetch
+lebih enak merge apa rebase,perbedaan_merge_rebase
+reset sama revert bedanya apa,perbedaan_reset_revert
+lagi conflict pas merge gimana,mengatasi_conflict
+harga bensin hari ini,fallback
+resep rendang padang,fallback
+cuaca di jogja gimana,fallback
+kapan jadwal wisuda,fallback
+siapa presiden indonesia,fallback

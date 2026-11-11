@@ -1,0 +1,457 @@
+{
+  "id": "git",
+  "name": "Asisten Perintah Git",
+  "bot_name": "GitBot",
+  "avatar": "🔀",
+  "color": "#F05032",
+  "description": "Memberi referensi perintah dasar Git, alur kerja branching, sinkronisasi remote, serta solusi undo dan penyelamatan kode.",
+  "greeting": "Halo, developer! 👋 Aku GitBot. Mau tanya soal git commit, git branch, git merge, cara membatalkan commit, atau perintah Git lainnya? Tinggal ketik aja!",
+  "suggestions": [
+    "Cara commit perubahan",
+    "Cara membuat branch baru",
+    "Membatalkan commit terakhir",
+    "Perbedaan git pull dan fetch"
+  ],
+  "fallback": [
+    "Maaf, GitBot belum punya referensi buat perintah atau skenario itu. Coba tanya soal commit, branch, merge, push, pull, reset, atau stash. Kalau mau makin paham, cek dokumentasi resmi GitHub: https://docs.github.com/en/get-started/using-git",
+    "Hmm, perintah itu belum ada di daftar GitBot. Mungkin kamu bisa intip dokumentasi GitHub buat referensi yang lebih lengkap: https://docs.github.com/en/get-started/using-git"
+  ],
+  "intents": [
+    {
+      "tag": "salam",
+      "patterns": [
+        "halo",
+        "hai",
+        "selamat pagi",
+        "selamat siang",
+        "selamat sore",
+        "selamat malam",
+        "assalamualaikum"
+      ],
+      "responses": [
+        "Halo! 👋 Siap ngoding dan kelola repositori? Tanyakan aja perintah Git yang lagi kamu butuhin — dari commit, branch, sampai undo.",
+        "Hai, developer! Ada perintah Git atau masalah version control yang bisa aku bantu? Coba tanya, nanti aku jawab."
+      ]
+    },
+    {
+      "tag": "perpisahan",
+      "patterns": [
+        "dadah",
+        "sampai jumpa",
+        "bye",
+        "selesai",
+        "keluar"
+      ],
+      "responses": [
+        "Sampai jumpa! 👋 Jangan lupa commit dan push pekerjaanmu yang udah beres biar rapi."
+      ]
+    },
+    {
+      "tag": "terima_kasih",
+      "patterns": [
+        "terima kasih",
+        "makasih",
+        "thanks",
+        "thank you",
+        "mantap makasih"
+      ],
+      "responses": [
+        "Sama-sama, senang bisa bantu! 😄 Kalau masih ada yang bikin bingung, tanya aja lagi."
+      ]
+    },
+    {
+      "tag": "identitas",
+      "patterns": [
+        "siapa kamu",
+        "kamu siapa",
+        "kamu bisa apa",
+        "tentang bot ini"
+      ],
+      "responses": [
+        "Aku {nama_bot}, asisten buat nanya-nanya perintah Git dan masalah version control sehari-hari. Coba tanya soal commit, branch, atau cara batalin commit — nanti aku bantu jawab."
+      ]
+    },
+    {
+      "tag": "git_init",
+      "patterns": [
+        "git init",
+        "cara membuat repo baru",
+        "inisialisasi git",
+        "mulai git di folder lokal"
+      ],
+      "responses": [
+        "Buat mulai pakai Git di folder proyek, kamu tinggal inisialisasi repositorinya. Ini bikin folder tersembunyi `.git` yang jadi 'arsip' riwayat perubahanmu.\n\nContoh:\n  git init"
+      ]
+    },
+    {
+      "tag": "git_clone",
+      "patterns": [
+        "git clone",
+        "cara download repo github",
+        "salin repositori remote",
+        "mengunduh project dari github"
+      ],
+      "responses": [
+        "Pengen kerja di project yang ada di GitHub/GitLab? Kamu bisa menyalin (clone) seluruh repositori beserta riwayat commit-nya ke komputer lokal.\n\nContoh:\n  git clone https://github.com/username/nama-repo.git"
+      ]
+    },
+    {
+      "tag": "git_config",
+      "patterns": [
+        "git config",
+        "atur nama dan email git",
+        "setting user git",
+        "ganti email commit git"
+      ],
+      "responses": [
+        "Sebelum commit pertama, pastikan identitasmu udah keisi. Kalau belum, commit bakal nampilin nama/email default yang bikin gak jelas siapa pembuatnya.\n\nContoh:\n  git config --global user.name \"Nama Kamu\"\n  git config --global user.email \"email@domain.com\"\n\nCek konfigurasi yang aktif:\n  git config --list"
+      ]
+    },
+    {
+      "tag": "git_status",
+      "patterns": [
+        "git status",
+        "cek status file git",
+        "melihat file yang berubah",
+        "status staging area",
+        "kondisi repo sekarang gimana"
+      ],
+      "responses": [
+        "Mau tahu kondisi kerja kamu sekarang? `git status` nunjukin branch aktif, file yang berubah, dan file baru yang belum di-track. Biasanya ini yang paling pertama diliat tiap mulai ngoding.\n\nContoh:\n  git status"
+      ]
+    },
+    {
+      "tag": "git_add",
+      "patterns": [
+        "git add",
+        "cara staging file",
+        "menambahkan file ke staging",
+        "git add titik",
+        "memilih file untuk dicommit",
+        "pilih file mana yang mau di commit"
+      ],
+      "responses": [
+        "Pilih file yang mau masuk 'keranjang' commit (staging area) sebelum di-commit.\n\nContoh:\n  git add index.html        # satu file tertentu\n  git add .                  # semua perubahan di folder ini"
+      ]
+    },
+    {
+      "tag": "git_commit",
+      "patterns": [
+        "git commit",
+        "cara commit perubahan",
+        "menyimpan perubahan ke git",
+        "ubah pesan commit terakhir",
+        "git commit amend"
+      ],
+      "responses": [
+        "Simpan snapshot perubahan yang udah di-staging ke riwayat lokal. Selalu pakai pesan yang jelas biar gampang dilacak nanti.\n\nContoh:\n  git commit -m \"Tambah fitur login\"\n\nSalah nulis pesan commit terakhir (belum di-push)? Perbaiki:\n  git commit --amend -m \"pesan baru\""
+      ]
+    },
+    {
+      "tag": "git_diff",
+      "patterns": [
+        "git diff",
+        "lihat perubahan kode",
+        "cek beda baris kode sebelum commit",
+        "perbedaan file yang diubah"
+      ],
+      "responses": [
+        "Mau lihat detail baris kode yang berubah sebelum commit? `git diff` nunjukin perubahan yang belum masuk staging.\n\nContoh:\n  git diff              # perubahan yang belum di-staging\n  git diff --staged     # perubahan yang sudah di-staging"
+      ]
+    },
+    {
+      "tag": "git_log",
+      "patterns": [
+        "git log",
+        "melihat riwayat commit",
+        "cek history git",
+        "daftar commit sebelumnya",
+        "riwayat commitnya lihat dimana"
+      ],
+      "responses": [
+        "Lihat riwayat commit biar tau cerita perjalanan projectmu.\n\nContoh:\n  git log\n  git log --oneline --graph --all   # ringkas, lengkap dengan percabangan"
+      ]
+    },
+    {
+      "tag": "git_branch",
+      "patterns": [
+        "git branch",
+        "lihat daftar branch",
+        "cara menghapus branch",
+        "cek branch aktif"
+      ],
+      "responses": [
+        "Kelola branch: lihat daftar, bikin, atau hapus. Branch bikin kamu bisa ngembangin fitur tanpa ganggu kode utama.\n\nContoh:\n  git branch                        # daftar branch lokal\n  git branch fitur-keranjang        # bikin branch baru\n  git branch -d fitur-keranjang     # hapus branch yang sudah di-merge"
+      ]
+    },
+    {
+      "tag": "git_switch",
+      "patterns": [
+        "git switch",
+        "git checkout",
+        "cara membuat branch baru",
+        "bikin branch baru",
+        "buat branch baru",
+        "pindah branch",
+        "ganti branch"
+      ],
+      "responses": [
+        "Pindah branch, atau langsung bikin sekaligus pindah. Ini versi modern dari `git checkout -b`.\n\nContoh:\n  git switch main               # pindah ke branch yang ada\n  git switch -c fitur-keranjang # bikin branch baru lalu langsung pindah"
+      ]
+    },
+    {
+      "tag": "git_merge",
+      "patterns": [
+        "git merge",
+        "menggabungkan branch",
+        "cara merge branch ke main",
+        "satukan branch fitur"
+      ],
+      "responses": [
+        "Gabungkan hasil kerja satu branch ke branch lain. Pindah dulu ke branch tujuan, baru jalanin merge.\n\nContoh:\n  git switch main\n  git merge fitur-keranjang"
+      ]
+    },
+    {
+      "tag": "git_rebase",
+      "patterns": [
+        "git rebase",
+        "merapikan riwayat commit",
+        "memindahkan basis branch"
+      ],
+      "responses": [
+        "Rapikan riwayat dengan memindahkan basis commit ke ujung branch utama, biar riwayatnya lurus dan gampang dibaca.\n\nContoh:\n  git switch fitur-keranjang\n  git rebase main\n\n⚠️ Hati-hati: jangan rebase branch yang udah di-push dan dipakai bareng tim."
+      ]
+    },
+    {
+      "tag": "git_remote",
+      "patterns": [
+        "git remote",
+        "hubungkan repo lokal ke github",
+        "cek url remote",
+        "git remote add origin"
+      ],
+      "responses": [
+        "Hubungkan repositori lokal ke server remote (GitHub/GitLab) dan cek URL yang terhubung.\n\nContoh:\n  git remote -v\n  git remote add origin https://github.com/username/nama-repo.git"
+      ]
+    },
+    {
+      "tag": "git_fetch",
+      "patterns": [
+        "git fetch",
+        "ambil update dari remote tanpa merge",
+        "cek perubahan terbaru di github"
+      ],
+      "responses": [
+        "Ambil info commit & branch terbaru dari remote tanpa nyentuh kode kerja kamu. Cocok buat cek update dulu sebelum mutusin mau apa.\n\nContoh:\n  git fetch origin"
+      ]
+    },
+    {
+      "tag": "git_pull",
+      "patterns": [
+        "git pull",
+        "tarik perubahan terbaru dari remote",
+        "update kode lokal dari github",
+        "sinkronisasi dari remote"
+      ],
+      "responses": [
+        "Tarik perubahan terbaru dari remote sekaligus langsung gabungkan ke branch aktif. Ini gabungan dari `git fetch` + `git merge`.\n\nContoh:\n  git pull origin main"
+      ]
+    },
+    {
+      "tag": "git_push",
+      "patterns": [
+        "git push",
+        "upload kode ke github",
+        "kirim commit ke remote",
+        "push branch baru"
+      ],
+      "responses": [
+        "Kirim commit lokal ke remote. Kalau ini push pertama di branch baru, set upstream-nya biar push berikutnya tinggal `git push` doang.\n\nContoh:\n  git push origin main\n  git push -u origin fitur-keranjang   # pertama kali, sekalian set upstream"
+      ]
+    },
+    {
+      "tag": "git_restore",
+      "patterns": [
+        "git restore",
+        "batalkan perubahan file sebelum commit",
+        "keluarkan file dari staging",
+        "unstage file",
+        "kembalikan file seperti semula"
+      ],
+      "responses": [
+        "Buang perubahan lokal yang belum di-commit, atau keluarkan file dari staging tanpa ngapus hasil editan.\n\nContoh:\n  git restore index.html              # kembalikan file yang belum di-staging\n  git restore --staged index.html    # unstage, tapi editan tetap ada"
+      ]
+    },
+    {
+      "tag": "git_reset",
+      "patterns": [
+        "git reset",
+        "membatalkan commit terakhir",
+        "batalin commit",
+        "undo commit",
+        "git reset soft",
+        "git reset hard"
+      ],
+      "responses": [
+        "Undo commit yang masih lokal (belum di-push). Pilih mode sesuai kebutuhanmu.\n\nContoh:\n  git reset --soft HEAD~1    # batal commit, perubahan tetap di staging\n  git reset --mixed HEAD~1   # default: perubahan balik ke working directory\n  git reset --hard HEAD~1    # hapus commit & kode (hati-hati, permanen!)\n\n⚠️ Jangan dipakai di commit yang udah di-push."
+      ]
+    },
+    {
+      "tag": "git_revert",
+      "patterns": [
+        "git revert",
+        "batalkan commit yang sudah dipush",
+        "batalin commit yang udah dipush",
+        "undo commit di branch bersama",
+        "rollback commit aman"
+      ],
+      "responses": [
+        "Batalkan commit yang udah terlanjur di-push dengan bikin commit balikan baru. Ini cara paling aman buat branch yang dipakai bareng tim.\n\nContoh:\n  git revert <hash-commit>"
+      ]
+    },
+    {
+      "tag": "git_stash",
+      "patterns": [
+        "git stash",
+        "simpan sementara perubahan",
+        "simpen dulu perubahan",
+        "pindah branch tapi belum siap commit",
+        "git stash pop"
+      ],
+      "responses": [
+        "Simpan sementara perubahan yang belum siap di-commit biar working directory bersih (misal mau pindah branch dulu). Ambil lagi kapan aja.\n\nContoh:\n  git stash          # simpan perubahan\n  git stash pop      # ambil kembali perubahan terakhir"
+      ]
+    },
+    {
+      "tag": "git_cherry_pick",
+      "patterns": [
+        "git cherry-pick",
+        "git cherry pick",
+        "ambil satu commit dari branch lain",
+        "salin commit tertentu"
+      ],
+      "responses": [
+        "Salin satu commit spesifik dari branch lain ke branch aktif, tanpa harus merge seluruh branch. Praktis kalau cuma butuh satu perbaikan.\n\nContoh:\n  git cherry-pick <hash-commit>"
+      ]
+    },
+    {
+      "tag": "git_clean",
+      "patterns": [
+        "git clean",
+        "hapus file untracked",
+        "bersihkan file baru yang tidak terpakai"
+      ],
+      "responses": [
+        "Hapus file & folder yang belum di-track (untracked) dari working directory. Cek dulu sebelum eksekusi karena sifatnya permanen.\n\nContoh:\n  git clean -nd    # lihat dulu daftar yang bakal dihapus (dry run)\n  git clean -fd    # hapus file & folder untracked"
+      ]
+    },
+    {
+      "tag": "git_tag",
+      "patterns": [
+        "git tag",
+        "membuat tag",
+        "lihat daftar tag",
+        "tag versi rilis"
+      ],
+      "responses": [
+        "Tag dipakai buat menandai versi rilis (misalnya `v1.0.0`) di titik commit tertentu — berguna buat nandain rilis atau titik stabil.\n\nContoh:\n  git tag                 # lihat daftar tag\n  git tag v1.0.0          # tandai versi di commit terakhir\n  git push origin v1.0.0  # kirim tag ke remote"
+      ]
+    },
+    {
+      "tag": "git_ignore",
+      "patterns": [
+        "gitignore",
+        "cara membuat gitignore",
+        "abaikan file di git",
+        "file apa saja yang diabaikan git"
+      ],
+      "responses": [
+        "`.gitignore` berisi daftar file/folder yang mau diabaikan Git, misalnya `node_modules/`, `.env`, atau hasil build. Jadi file sampah gak ikut ke-commit.\n\nContoh isi file `.gitignore`:\n  node_modules/\n  .env\n  *.log"
+      ]
+    },
+    {
+      "tag": "git_rm",
+      "patterns": [
+        "git rm",
+        "hapus file dari git",
+        "menghapus file dari repo"
+      ],
+      "responses": [
+        "Hapus file dari tracking Git sekaligus dari working directory.\n\nContoh:\n  git rm index.html\n\nKalau mau hapus dari repo tapi tetap simpan filenya:\n  git rm --cached index.html"
+      ]
+    },
+    {
+      "tag": "git_reflog",
+      "patterns": [
+        "git reflog",
+        "pulihkan commit yang hilang",
+        "kembalikan commit yang kehapus",
+        "lihat semua pergerakan head"
+      ],
+      "responses": [
+        "`reflog` nyatet semua pergerakan HEAD — penyelamat kalau commit tiba-tiba 'hilang' setelah reset atau rebasing. Ini cara balikinnya.\n\nContoh:\n  git reflog\n  git reset --hard HEAD@{1}   # balik ke posisi sebelumnya"
+      ]
+    },
+    {
+      "tag": "git_show",
+      "patterns": [
+        "git show",
+        "lihat isi commit",
+        "lihat detail commit",
+        "cek perubahan satu commit"
+      ],
+      "responses": [
+        "Lihat detail satu commit: pesan, penulis, dan perubahan file di dalamnya.\n\nContoh:\n  git show <hash-commit>"
+      ]
+    },
+    {
+      "tag": "perbedaan_pull_fetch",
+      "patterns": [
+        "perbedaan git pull dan fetch",
+        "beda git fetch dan git pull",
+        "apa bedanya git pull dan fetch",
+        "git pull apa bedanya sama fetch",
+        "kapan pakai fetch atau pull"
+      ],
+      "responses": [
+        "Bingung bedanya `pull` sama `fetch`? Simpelnya:\n\n`git fetch` cuma mengunduh pembaruan dari remote tanpa nyentuh kode kerja kamu.\n`git pull` itu `fetch` + langsung `merge` ke branch aktif.\n\nJadi kalau mau cek update dulu, pakai `fetch`. Kalau udah yakin, pakai `pull`."
+      ]
+    },
+    {
+      "tag": "perbedaan_merge_rebase",
+      "patterns": [
+        "perbedaan git merge dan rebase",
+        "beda merge dan rebase",
+        "apa bedanya merge dan rebase",
+        "git rebase vs merge bedanya apa",
+        "lebih baik merge atau rebase"
+      ],
+      "responses": [
+        "Dua-duanya buat nyatuin branch, tapi beda hasilnya:\n\n`git merge` bikin commit penggabungan baru, jadi riwayat percabangannya keliatan.\n`git rebase` mindahin commit ke ujung branch tujuan, riwayatnya jadi lurus (linear).\n\nRebase enak buat riwayat bersih, tapi jangan dipakai di branch yang udah di-push bareng tim."
+      ]
+    },
+    {
+      "tag": "perbedaan_reset_revert",
+      "patterns": [
+        "perbedaan git reset dan revert",
+        "beda reset dan revert",
+        "kapan pakai reset atau revert"
+      ],
+      "responses": [
+        "Bedanya di sini:\n\n`git reset` mundurin riwayat commit — cocok buat commit lokal yang belum di-push.\n`git revert` bikin commit baru yang membalikkan perubahan — aman buat commit yang udah dipublikasikan.\n\nAturannya gampang: belum di-push pakai `reset`, udah di-push pakai `revert`."
+      ]
+    },
+    {
+      "tag": "mengatasi_conflict",
+      "patterns": [
+        "cara mengatasi merge conflict",
+        "kena conflict saat merge",
+        "konflik git",
+        "fix conflict git"
+      ],
+      "responses": [
+        "Konflik itu wajar, jangan panik! 😄 Buka file yang bertanda `<<<<<<<`, `=======`, dan `>>>>>>>`, pilih atau gabung kode yang bener, hapus tanda pembatasnya, lalu tandai selesai.\n\nContoh:\n  git add <file>\n  git commit"
+      ]
+    }
+  ]
+}
